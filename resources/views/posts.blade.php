@@ -23,23 +23,27 @@
 
     <div class="container">
         <div class="row">
-            @foreach ($posts->skip(1) as $post)  
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <img class="card-img-top" src="img/{{ $post->category->name }}.jpg" alt="{{ $post->category->name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $post->title }}</h5>
-                        <small class="text-muted">
-                            <p>By. <a href="/authors/{{ $post->author->username }}"
-                                    class="text-decoration-none">{{ $post->author->name }}</a>
-                                {{ $post->created_at->diffForHumans() }}
-                            </p>
-                        </small>
-                        <p class="card-text">{{ $post->excerpt }}</p>
-                        <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Read more</a>
+            @foreach ($posts->skip(1) as $post)
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="position-absolute px-3 py-2" style="background: rgba(0, 0, 0, 0.7)"><a
+                                href="/categories/{{ $post->category->slug }}"
+                                class="text-white text-decoration-none">{{ $post->category->name }}</a></div>
+                        <img class="card-img-top" src="img/{{ $post->category->name }}.jpg"
+                            alt="{{ $post->category->name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <small class="text-muted">
+                                <p>By. <a href="/authors/{{ $post->author->username }}"
+                                        class="text-decoration-none">{{ $post->author->name }}</a>
+                                    {{ $post->created_at->diffForHumans() }}
+                                </p>
+                            </small>
+                            <p class="card-text">{{ $post->excerpt }}</p>
+                            <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Read more</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
